@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Fortify;
 use App\Http\Controllers\CategoryController;
@@ -62,9 +63,7 @@ Route::group(['middleware' => 'auth'], function() {
         'as'            => 'admin.',      
         'middleware'    => 'role:admin',
     ], function(){
-        Route::get('/dashboard', function () {
-            return view('admin.index');
-        })->name('index');  
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('index');  
         Route::resource('category', CategoryController::class)->except(['create', 'edit', 'show']);
 
         Route::resource('product', ProductController::class)->except(['create', 'edit']);    

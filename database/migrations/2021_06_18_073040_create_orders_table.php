@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->text('address')->nullable();
             $table->timestamp('chekout_date')->nullable();
             $table->timestamp('accepted_payment_date')->nullable();
+            $table->timestamp('shipment_date')->nullable();
             $table->timestamp('closed_date')->nullable();
             $table->string('status');
             $table->timestamps();

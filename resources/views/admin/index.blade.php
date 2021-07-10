@@ -12,7 +12,7 @@
                             <h4 class="header-title mb-0">Pelanggan</h4>
                         </div>
                         <div class="d-flex justify-content-between pb-2">
-                            <h1></h1>
+                            <h1>{{$customers}}</h1>
                         </div>
                         </div>
                 </div>
@@ -26,7 +26,7 @@
                             <h4 class="header-title mb-0">Pesanan</h4>
                         </div>
                         <div class="d-flex justify-content-between pb-2">
-                            <h1></h1>
+                            <h1>{{$orders}}</h1>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                             <h4 class="header-title mb-0">Konfirmasi Pembayaran</h4>
                         </div>
                         <div class="d-flex justify-content-between pb-2">
-                            <h1></h1>
+                            <h1>{{$waiting}}</h1>
                         </div>
                     </div>
                 </div>
