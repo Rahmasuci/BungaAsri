@@ -82,7 +82,7 @@ class PaymentController extends Controller
             ]);
             
             $orders = Order::whereIn('id', explode(",",$request->id))->update([
-                'payment_date' => Carbon::now(),
+                // 'payment_date' => Carbon::now(),
                 'status' => 'Payment Success'
             ]);
         } else{

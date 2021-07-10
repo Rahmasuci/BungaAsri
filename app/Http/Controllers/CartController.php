@@ -202,7 +202,7 @@ class CartController extends Controller
 
         Session::flash('success', 'Produk Berhasil Dihapus dari KerangjangMu');
 
-        return redirect()->route('customer.order.index');
+        return redirect()->back();
     }
 
     public function checkout(Request $request){

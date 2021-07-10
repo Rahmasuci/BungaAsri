@@ -13,10 +13,14 @@
             <div class="left-side">
                 <h3 class="agileits-sear-head">Kategori</h3>
                 <ul>
+                    <li>
+                        <a href="{{route('products')}}">All</a>
+                    </li>
                     @foreach($categories as $category)
                     <li>
-                        <input type="checkbox" class="checked">
-                        <span class="span">{{$category->name}}</span>
+                        <a href="{{route('customer.category.show', $category->id)}}">
+                            {{$category->name}}
+                        </a>
                     </li>
                     @endforeach
                 </ul>
@@ -30,6 +34,7 @@
             <div class="wrapper_top_shop">                
                 <!-- product-sec1 -->
                 <div class="product-sec1">
+                    <h4>Kategori | {{$name}}</h4> <br>
                 @foreach($products as $product)
                     <div class="col-md-4 product-men">
                         <div class="product-shoe-info shoe">

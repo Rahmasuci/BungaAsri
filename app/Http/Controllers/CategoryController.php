@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Session;  
+use Auth;
 
 class CategoryController extends Controller
 {
@@ -62,7 +64,20 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        // dd($category);
+        $categories = Category::all();
+        $products = Product::where('id', $category->id)->get();
+        if(Auth::check()){
+            if (Auth::user()->role == 1) {                
+                $page = view('customer.product', [
+                    'products' => $products,
+                    'categories' => $categories,
+                    'name' => $category->name,
+                ]);
+            }
+        } 
+
+        return $page;
     }
 
     /**

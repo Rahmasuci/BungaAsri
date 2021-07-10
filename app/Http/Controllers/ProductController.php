@@ -32,13 +32,15 @@ class ProductController extends Controller
             } else {
                 $page = view('customer.product', [
                     'products' => $products,
-                    'categories' => $categories
+                    'categories' => $categories,
+                    'name' => 'Semua'
                 ]);
             }
         } else {
             $page = view('customer.product', [
                 'products' => $products,
-                'categories' => $categories
+                'categories' => $categories,
+                'name' => 'Semua'
             ]);
         } 
 

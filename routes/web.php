@@ -50,9 +50,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('chekout', [CartController::class, 'checkout'])->name('checkout');
         Route::post('chekout/address', [CartController::class, 'address'])->name('address');
         
-        Route::resource('payment', PaymentController::class)->only('index');
+        Route::resource('payment', PaymentController::class)->only(['index', 'store']);
         
         Route::resource('order', OrderController::class)->only(['index', 'update']);
+
+        Route::resource('category', CategoryController::class)->only(['show']);
     });
 
     Route::group([
@@ -67,7 +69,7 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::resource('product', ProductController::class)->except(['create', 'edit']);    
 
-        Route::resource('imgProduct', ImgProductController::class)->only('destroy');
+        Route::resource('imgProduct', ImgProductController::class)->only('destroy',);
 
         Route::resource('payment', PaymentController::class)->only('index');
         
