@@ -5,7 +5,7 @@
     <div class="shop_inner_inf">
         <div class="privacy about">
             <h3>Check<span>Out</span></h3>
-<br>
+            <br>
             <div class="checkout-right">
                 <table class="timetable_sub mt-4">
                     <thead>
@@ -29,12 +29,12 @@
                                     <img src="{{ asset('storage/product/'.$img->path_img) }}" alt=" " class="img-responsive">
                                 </a>
                                 @endforeach
-                            </td> 
+                            </td>
                             <td class="invert"> {{$cart->orderDetail->qty}}</td>
                             <td class="invert">{{$cart->orderDetail->product->name}}</td>
 
                             <td class="invert ">Rp <span class="total">{{$cart->orderDetail->total}}</span></td>
-                        </tr>                        
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -44,18 +44,18 @@
                 </div>
             </div>
 
-            
+
             <div class="checkout-left">
                 <div class="col-md-8">
                     <h4>Masukkan Alamat Pengiriman</h4>
-                    <form action="{{route('customer.address')}}" method="post" class="creditly-card-form agileinfo_form">
+                    <form action="{{route('customer.checkout.address')}}" method="post" class="creditly-card-form agileinfo_form" enctype="multipart/form-data">
                         @csrf
                         <section class="creditly-wrapper wrapper">
                             <div class="information-wrapper">
                                 <div class="first-row form-group">
                                     <div class="controls">
-                                        <input type="text" value="" name="order" hidden id='order_id'> 
-                                        <input type="text" value="" name="total_payment" hidden id="total_payment"> 
+                                        <input type="text" value="" name="order" hidden id='order_id'>
+                                        <input type="text" value="" name="total_payment" hidden id="total_payment">
                                         <br>
                                         <textarea name="address" id="" cols="10" rows="5" class="billing-address-name form-control"></textarea>
                                     </div>
@@ -70,7 +70,7 @@
             <div class="clearfix"> </div>
 
 
-			<div class="clearfix"></div>
+            <div class="clearfix"></div>
         </div>
     </div>
     <!-- //top products -->
@@ -80,13 +80,13 @@
 @section('checkout')
 <!-- mendapatkan id order -->
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('#save').on('click', function(e) {
-            var allVals = []; 
-            $(".ids").each(function() {  
+            var allVals = [];
+            $(".ids").each(function() {
                 allVals.push($(this).attr('data-id'));
-            }); 
-            $('#order_id').val(allVals);    
+            });
+            $('#order_id').val(allVals);
             console.log(allVals);
         });
     });
@@ -95,16 +95,16 @@
 <!-- mendapatkan nilai total belanja -->
 <script>
     $(window).load(function() {
-        var allTotal= [];
+        var allTotal = [];
         var subTotal = 0
-        $(".total").each(function() {  
+        $(".total").each(function() {
             allTotal.push(parseInt($(this).text()));
-        }); 
-        for(i = 0; i <allTotal.length; i++){
+        });
+        for (i = 0; i < allTotal.length; i++) {
             subTotal += allTotal[i];
         }
-        $('#total').text("Total Belanja : Rp " + subTotal );
-        $('#total_payment').val( subTotal );
+        $('#total').text("Total Belanja : Rp " + subTotal);
+        $('#total_payment').val(subTotal);
 
         console.log(allTotal);
     });

@@ -41,37 +41,37 @@ Route::get('/shop-now', [ProductController::class, 'index'])->name('products');
 Route::get('/shop-now/detail-product/{product}', [ProductController::class, 'show'])->name('detail.product');
 
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function () {
     Route::group([
-        'prefix'        => 'customer' ,
-        'as'            => 'customer.',      
+        'prefix'        => 'customer',
+        'as'            => 'customer.',
         'middleware'    => 'role:customer',
-    ], function(){
+    ], function () {
         Route::resource('cart', CartController::class)->except(['create', 'edit', 'show']);
         Route::post('chekout', [CartController::class, 'checkout'])->name('checkout');
-        Route::post('chekout/address', [CartController::class, 'address'])->name('address');
-        
+        Route::post('chekout/address', [CartController::class, 'address'])->name('checkout.address');
+
         Route::resource('payment', PaymentController::class)->only(['index', 'store']);
-        
+
         Route::resource('order', OrderController::class)->only(['index', 'update']);
 
         Route::resource('category', CategoryController::class)->only(['show']);
     });
 
     Route::group([
-        'prefix'        => 'admin' ,
-        'as'            => 'admin.',      
+        'prefix'        => 'admin',
+        'as'            => 'admin.',
         'middleware'    => 'role:admin',
-    ], function(){
-        Route::get('/dashboard', [AdminController::class, 'index'])->name('index');  
+    ], function () {
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('index');
         Route::resource('category', CategoryController::class)->except(['create', 'edit', 'show']);
 
-        Route::resource('product', ProductController::class)->except(['create', 'edit']);    
+        Route::resource('product', ProductController::class)->except(['create', 'edit']);
 
         Route::resource('imgProduct', ImgProductController::class)->only('destroy',);
 
         Route::resource('payment', PaymentController::class)->only('index');
-        
+
         Route::resource('order', OrderController::class)->only(['index', 'update']);
     });
 });

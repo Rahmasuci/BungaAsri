@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Session;  
+use Session;
 use Auth;
 
 class CategoryController extends Controller
@@ -19,7 +19,7 @@ class CategoryController extends Controller
     {
         $categories = Category::with('product')->get();
         return view('admin.store.category', [
-            'categories' => $categories 
+            'categories' => $categories
         ]);
     }
 
@@ -42,7 +42,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required',
         ]);
 
@@ -53,7 +53,6 @@ class CategoryController extends Controller
         Session::flash('success', 'Kategori Berhasil Ditambahkan');
 
         return redirect()->route('admin.category.index');
-
     }
 
     /**
@@ -66,16 +65,16 @@ class CategoryController extends Controller
     {
         // dd($category);
         $categories = Category::all();
-        $products = Product::where('id', $category->id)->get();
-        if(Auth::check()){
-            if (Auth::user()->role == 1) {                
+        $products = Product::where('category_id', $category->id)->get();
+        if (Auth::check()) {
+            if (Auth::user()->role == 1) {
                 $page = view('customer.product', [
                     'products' => $products,
                     'categories' => $categories,
                     'name' => $category->name,
                 ]);
             }
-        } 
+        }
 
         return $page;
     }
@@ -101,7 +100,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         // dd($request);
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required',
         ]);
 
@@ -110,7 +109,6 @@ class CategoryController extends Controller
         Session::flash('success', 'Kategori Berhasil Diubah');
 
         return redirect()->route('admin.category.index');
-
     }
 
     /**
